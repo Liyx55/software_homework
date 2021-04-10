@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sudo", "sudo.vcxproj", "{37308586-F0CE-4752-9F74-B0577E5E1411}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Debug|x64.ActiveCfg = Debug|x64
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Debug|x64.Build.0 = Debug|x64
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Debug|x86.ActiveCfg = Debug|Win32
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Debug|x86.Build.0 = Debug|Win32
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Release|x64.ActiveCfg = Release|x64
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Release|x64.Build.0 = Release|x64
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Release|x86.ActiveCfg = Release|Win32
+		{37308586-F0CE-4752-9F74-B0577E5E1411}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {022090DD-A08C-47A2-84EC-A02A616F26A8}
+	EndGlobalSection
+EndGlobal
