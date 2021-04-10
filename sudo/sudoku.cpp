@@ -170,17 +170,18 @@ int main(int argc, char** argv)
 			<< "Usage:\n"
 			<< "      sudoku.exe -c number --> generate n sudoku finals. \n"
 			<< "      sudoku.exe -s path --> Read sudoku from file in the given path,and solve them.\n"
-			<< "      sudoku.exe -p number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
+			<< "      sudoku.exe -n number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
 			<< "      The charactre should be itself:such as C is not equal to c.\n";
 		return 1;
 	}
 
-	if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1], "-p"))
+	if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1], "-n"))
 	{
 		cout << "Illegal paramater\n"
-			<< "The first parameter should be -c or -s or -p\n"
+			<< "The first parameter should be -c or -s or -n\n"
 			<< "-c means generating sudoku\n"
 			<< "-s meas solve the problem read from the file\n";
+			<< "-n means the number of sudo game\n";
 		return 1;
 	}
 
@@ -219,7 +220,7 @@ int main(int argc, char** argv)
 		return 0;
 	}
 
-	if (!strcmp(argv[1], "-p"))//default path ques.txt
+	if (!strcmp(argv[1], "-n"))//default path ques.txt
 	{
 		int len = strlen(argv[2]);
 		for (int i = 0; i < len; i++)
