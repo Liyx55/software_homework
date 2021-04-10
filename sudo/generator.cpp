@@ -107,7 +107,7 @@ void sudoku_generate(int n)
 
 	} while (next_permutation(line + 1, line + 9));
 }
-void ques_generate(int ques_num)
+void ques_generate1(int ques_num)
 {
 
 	FILE* fpQues1;
@@ -157,6 +157,157 @@ void ques_generate(int ques_num)
 		//已经掏空了18个
 		int others;
 		others = 12 + rand() % 31;//再掏12-41个就可以了
+		while (others--)
+		{
+			int k = rand() % 81;
+			int i = k / 9;
+			int j = k % 9;
+
+			j *= 2;
+			if (ques_board[i][j] != '0')ques_board[i][j] = '0';
+			else others++;
+		}
+
+		//freopen(QUESPATH, "w", stdout);
+		for (int i = 0; i < 10; i++)
+		{
+			strcat(str, ques_board[i]);
+		}if (!ques_num) str[161] = '\0';
+		fputs(str, fpQues1);
+	}
+	fclose(fpBase1);
+	fclose(fpQues1);
+}
+void ques_generate2(int ques_num, int diff)
+{
+
+	FILE* fpQues1;
+	FILE* fpBase1;
+	char str[200];
+
+	fpBase1 = fopen(SUDOKUPATH, "r");
+	fpQues1 = fopen(QUESPATH, "w");
+	ques_board[9][0] = '\n';
+	ques_board[9][1] = '\0';
+	while (ques_num--)
+	{
+		str[0] = '\0';
+		for (int i = 0; i < 9; i++)
+		{
+			fgets(ques_board[i], 20, fpBase1);
+		}fgetc(fpBase1);
+
+		//int base[9] = { 0,3,6,27,30,33,54,57,60 };
+		int base[9] = { 0,6,12,54,60,66,108,114,120 };
+		//int plus[9] = { 0,1,2,9,10,11,18,19,20 };
+		int plus[9] = { 0,2,4,18,20,22,36,38,40 };
+
+		for (int k = 0; k < 9; k++)//每个3*3随机掏空2个
+		{
+
+			int i, j,
+				hole[2];//3*3里面掏的位置
+			hole[0] = rand() % 9;
+			//hole[1] *= 2;
+			hole[1] = rand() % 9;
+			//hole[2] *= 2;
+			while (hole[0] == hole[1])//防止重复
+			{
+				hole[1] = rand() % 9;
+			}
+			for (int t = 0; t < 2; t++)
+			{
+				int dot;
+				dot = base[k] + plus[hole[t]];
+				i = dot / 18;
+				j = dot % 18;
+				ques_board[i][j] = '0';
+			}
+		}
+
+		//已经掏空了18个
+		int others;//2-42 
+		//2-22
+		if (diff == 1) {
+			others = 2 + rand() % 21;
+		}
+		//23-37
+		if (diff == 2)
+			others = 23 + rand() % 15;
+		//38-42
+		if (diff == 3)
+			others = 38 + rand() % 5;
+		while (others--)
+		{
+			int k = rand() % 81;
+			int i = k / 9;
+			int j = k % 9;
+
+			j *= 2;
+			if (ques_board[i][j] != '0')ques_board[i][j] = '0';
+			else others++;
+		}
+
+		//freopen(QUESPATH, "w", stdout);
+		for (int i = 0; i < 10; i++)
+		{
+			strcat(str, ques_board[i]);
+		}if (!ques_num) str[161] = '\0';
+		fputs(str, fpQues1);
+	}
+	fclose(fpBase1);
+	fclose(fpQues1);
+}
+void ques_generate3(int ques_num, int space_num1, int space_num2)
+{
+
+	FILE* fpQues1;
+	FILE* fpBase1;
+	char str[200];
+
+	fpBase1 = fopen(SUDOKUPATH, "r");
+	fpQues1 = fopen(QUESPATH, "w");
+	ques_board[9][0] = '\n';
+	ques_board[9][1] = '\0';
+	while (ques_num--)
+	{
+		str[0] = '\0';
+		for (int i = 0; i < 9; i++)
+		{
+			fgets(ques_board[i], 20, fpBase1);
+		}fgetc(fpBase1);
+
+		//int base[9] = { 0,3,6,27,30,33,54,57,60 };
+		int base[9] = { 0,6,12,54,60,66,108,114,120 };
+		//int plus[9] = { 0,1,2,9,10,11,18,19,20 };
+		int plus[9] = { 0,2,4,18,20,22,36,38,40 };
+
+		for (int k = 0; k < 9; k++)//每个3*3随机掏空2个
+		{
+
+			int i, j,
+				hole[2];//3*3里面掏的位置
+			hole[0] = rand() % 9;
+			//hole[1] *= 2;
+			hole[1] = rand() % 9;
+			//hole[2] *= 2;
+			while (hole[0] == hole[1])//防止重复
+			{
+				hole[1] = rand() % 9;
+			}
+			for (int t = 0; t < 2; t++)
+			{
+				int dot;
+				dot = base[k] + plus[hole[t]];
+				i = dot / 18;
+				j = dot % 18;
+				ques_board[i][j] = '0';
+			}
+		}
+
+		//已经掏空了18个
+		int others;
+		others = space_num1 - 18 + rand() % (space_num2 - space_num1 + 1);
 		while (others--)
 		{
 			int k = rand() % 81;

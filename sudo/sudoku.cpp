@@ -164,16 +164,6 @@ void settle_ques()
 int main(int argc, char** argv)
 {
 	if (argc == 3) {
-		if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1], "-n"))
-		{
-			cout << "Illegal paramater\n"
-				<< "The first parameter should be -c or -s or -n\n"
-				<< "-c means generating sudoku\n"
-				<< "-s meas solve the problem read from the file\n"
-				<< "-n means the number of sudo game\n";
-			return 1;
-		}
-
 		if (!strcmp(argv[1], "-c"))//judge the second parameter when -c
 		{
 			int len = strlen(argv[2]);
@@ -211,7 +201,7 @@ int main(int argc, char** argv)
 
 		if (!strcmp(argv[1], "-n"))//default path ques.txt
 		{
-			int len = strlen(argv[2]);
+			int len = strlen(argv[2]);//读数字
 			for (int i = 0; i < len; i++)
 			{
 				if (argv[2][i] > '9' || argv[2][i] < '0')
@@ -226,16 +216,16 @@ int main(int argc, char** argv)
 			for (int i = 0; i < len; i++)
 			{
 				number = number * 10 + argv[2][i] - '0';
-			}
+			}//转换为具体的数字
 
-			ques_generate(number);
+			ques_generate1(number);
 			cout << "The sudoku question generated is in the ques.txt\n"
 				<< "Have a check\n";
 			return 0;
 		}
 	}
 
-	if (argc == 4) {
+	else if (argc == 4) {
 		if (strcmp(argv[1], "-n") && strcmp(argv[3], "-u"))
 		{
 			cout << "Illegal paramater\n"
@@ -263,7 +253,7 @@ int main(int argc, char** argv)
 				number = number * 10 + argv[2][i] - '0';
 			}
 
-			ques_generate(number);
+			ques_generate1(number);
 			cout << "The sudoku question generated is in the ques.txt\n"
 				<< "Have a check\n";
 			return 0;
@@ -271,8 +261,8 @@ int main(int argc, char** argv)
 
 	}
 
-	if (argc == 5) {
-		if (strcmp(argv[1], "-n") && (strcmp(argv[3], "-m")|| strcmp(argv[3], "-r")))
+	else if (argc == 5) {
+		if (strcmp(argv[1], "-n") && (strcmp(argv[3], "-m") || strcmp(argv[3], "-r")))
 		{
 			cout << "Illegal paramater\n"
 				<< "The first parameter should be -n and the third parameter should be -r or -m\n";
@@ -299,12 +289,76 @@ int main(int argc, char** argv)
 				number = number * 10 + argv[2][i] - '0';
 			}
 
-			ques_generate(number);
+			if (!strcmp(argv[3], "-m")) {
+				if (argv[4][0] > '3' || argv[4][0] < '1')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The forth parameter should be a positive integer(1-3)\n";
+					return 1;
+				}
+
+				int diff = 0;
+				diff = argv[4][0] - '0';
+				//传进函数
+				ques_generate2(number, diff);
+			}
+			else {
+				int len = strlen(argv[4]);
+				if (argv[4][0] > '9' || argv[4][0] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The forth parameter should be a positive integer\n";
+					return 1;
+				}
+				if (argv[4][1] > '9' || argv[4][1] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The forth parameter should be a positive integer\n";
+					return 1;
+				}
+				/*if (argv[4][2] != '~' || argv[4][2] != '-')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The split symbol should be ~ or -\n";
+					return 1;
+				}*/
+				if (argv[4][3] > '9' || argv[4][3] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The forth parameter should be a positive integer\n";
+					return 1;
+				}
+				if (argv[4][4] > '9' || argv[4][4] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The forth parameter should be a positive integer\n";
+					return 1;
+				}
+				int number1 = 0;
+				int number2 = 0;
+				number1 = (argv[4][0] - '0') * 10 + argv[4][1] - '0';
+				number2 = (argv[4][3] - '0') * 10 + argv[4][4] - '0';
+				cout << number1 << " " << number2;
+				ques_generate3(number, number1, number2);
+			}
+			//传参数
+
 			cout << "The sudoku question generated is in the ques.txt\n"
 				<< "Have a check\n";
 			return 0;
 		}
 	}
-	system("pause");
+
+	else {
+		cout << "Illegal paramater number\n"
+			<< "Usage:\n"
+			<< "      sudoku.exe -c number --> generate n sudoku finals. \n"
+			<< "      sudoku.exe -s path --> Read sudoku from file in the given path,and solve them.\n"
+			<< "      sudoku.exe -n number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
+			<< "      The charactre should be itself:such as C is not equal to c.\n";
+		return 1;
+	}
+
+	//system("pause");
 	return 0;
 }
