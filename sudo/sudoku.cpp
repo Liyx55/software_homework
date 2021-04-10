@@ -163,88 +163,148 @@ void settle_ques()
 
 int main(int argc, char** argv)
 {
-
-	if (argc != 3)//参数不等于3个
-	{
-		cout << "Illegal paramater number\n"
-			<< "Usage:\n"
-			<< "      sudoku.exe -c number --> generate n sudoku finals. \n"
-			<< "      sudoku.exe -s path --> Read sudoku from file in the given path,and solve them.\n"
-			<< "      sudoku.exe -n number --> produce sudoku problem into the given path(prepare for the sudoku game)\n"
-			<< "      The charactre should be itself:such as C is not equal to c.\n";
-		return 1;
-	}
-
-	if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1], "-n"))
-	{
-		cout << "Illegal paramater\n"
-			<< "The first parameter should be -c or -s or -n\n"
-			<< "-c means generating sudoku\n"
-			<< "-s meas solve the problem read from the file\n";
-			<< "-n means the number of sudo game\n";
-		return 1;
-	}
-
-	if (!strcmp(argv[1], "-c"))//judge the second parameter when -c
-	{
-		int len = strlen(argv[2]);
-		for (int i = 0; i < len; i++)
+	if (argc == 3) {
+		if (strcmp(argv[1], "-c") && strcmp(argv[1], "-s") && strcmp(argv[1], "-n"))
 		{
-			if (argv[2][i] > '9' || argv[2][i] < '0')
+			cout << "Illegal paramater\n"
+				<< "The first parameter should be -c or -s or -n\n"
+				<< "-c means generating sudoku\n"
+				<< "-s meas solve the problem read from the file\n"
+				<< "-n means the number of sudo game\n";
+			return 1;
+		}
+
+		if (!strcmp(argv[1], "-c"))//judge the second parameter when -c
+		{
+			int len = strlen(argv[2]);
+			for (int i = 0; i < len; i++)
 			{
-				cout << "Illegal paramater\n";
-				cout << "The second parameter should be a positive integer\n";
-				return 1;
+				if (argv[2][i] > '9' || argv[2][i] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The second parameter should be a positive integer\n";
+					return 1;
+				}
 			}
-		}
 
-		int number = 0;
-		for (int i = 0; i < len; i++)
-		{
-			number = number * 10 + argv[2][i] - '0';
-		}
-
-		sudoku_generate(number);
-		cout << "The sudoku final generated is in the sudoku.txt\n"
-			<< "Have a check\n";
-		return 0;
-	}
-
-	if (!strcmp(argv[1], "-s"))
-	{
-		strcpy(AbsolutePath, argv[2]);
-		settle_ques();
-
-		cout << "The answer you need is in the sudoku.txt\n"
-			<< "Have a check\n";
-		return 0;
-	}
-
-	if (!strcmp(argv[1], "-n"))//default path ques.txt
-	{
-		int len = strlen(argv[2]);
-		for (int i = 0; i < len; i++)
-		{
-			if (argv[2][i] > '9' || argv[2][i] < '0')
+			int number = 0;
+			for (int i = 0; i < len; i++)
 			{
-				cout << "Illegal paramater\n";
-				cout << "The second parameter should be a positive integer\n";
-				return 1;
+				number = number * 10 + argv[2][i] - '0';
 			}
+
+			sudoku_generate(number);
+			cout << "The sudoku final generated is in the sudoku.txt\n"
+				<< "Have a check\n";
+			return 0;
 		}
 
-		int number = 0;
-		for (int i = 0; i < len; i++)
+		if (!strcmp(argv[1], "-s"))
 		{
-			number = number * 10 + argv[2][i] - '0';
+			strcpy(AbsolutePath, argv[2]);
+			settle_ques();
+
+			cout << "The answer you need is in the sudoku.txt\n"
+				<< "Have a check\n";
+			return 0;
 		}
 
-		ques_generate(number);
-		cout << "The sudoku question generated is in the ques.txt\n"
-			<< "Have a check\n";
-		return 0;
+		if (!strcmp(argv[1], "-n"))//default path ques.txt
+		{
+			int len = strlen(argv[2]);
+			for (int i = 0; i < len; i++)
+			{
+				if (argv[2][i] > '9' || argv[2][i] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The second parameter should be a positive integer\n";
+					return 1;
+				}
+			}
+
+			int number = 0;
+			for (int i = 0; i < len; i++)
+			{
+				number = number * 10 + argv[2][i] - '0';
+			}
+
+			ques_generate(number);
+			cout << "The sudoku question generated is in the ques.txt\n"
+				<< "Have a check\n";
+			return 0;
+		}
 	}
 
+	if (argc == 4) {
+		if (strcmp(argv[1], "-n") && strcmp(argv[3], "-u"))
+		{
+			cout << "Illegal paramater\n"
+				<< "The first parameter should be -n and the third parameter should be -u\n";
+			return 1;
+		}
+
+		if (!strcmp(argv[1], "-n"))//default path ques.txt
+		{
+			//功能还未实现 -u
+			int len = strlen(argv[2]);
+			for (int i = 0; i < len; i++)
+			{
+				if (argv[2][i] > '9' || argv[2][i] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The second parameter should be a positive integer\n";
+					return 1;
+				}
+			}
+
+			int number = 0;
+			for (int i = 0; i < len; i++)
+			{
+				number = number * 10 + argv[2][i] - '0';
+			}
+
+			ques_generate(number);
+			cout << "The sudoku question generated is in the ques.txt\n"
+				<< "Have a check\n";
+			return 0;
+		}
+
+	}
+
+	if (argc == 5) {
+		if (strcmp(argv[1], "-n") && (strcmp(argv[3], "-m")|| strcmp(argv[3], "-r")))
+		{
+			cout << "Illegal paramater\n"
+				<< "The first parameter should be -n and the third parameter should be -r or -m\n";
+			return 1;
+		}
+
+		if (!strcmp(argv[1], "-n"))//default path ques.txt
+		{
+			//功能还未实现 -m -r
+			int len = strlen(argv[2]);
+			for (int i = 0; i < len; i++)
+			{
+				if (argv[2][i] > '9' || argv[2][i] < '0')
+				{
+					cout << "Illegal paramater\n";
+					cout << "The second parameter should be a positive integer\n";
+					return 1;
+				}
+			}
+
+			int number = 0;
+			for (int i = 0; i < len; i++)
+			{
+				number = number * 10 + argv[2][i] - '0';
+			}
+
+			ques_generate(number);
+			cout << "The sudoku question generated is in the ques.txt\n"
+				<< "Have a check\n";
+			return 0;
+		}
+	}
 	system("pause");
 	return 0;
 }
