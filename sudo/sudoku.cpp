@@ -3,7 +3,7 @@
 ////fputs 将数独装换成一个长的字符串
 
 #include"generator.h"
-#include<iostream>
+//#include<iostream>
 using namespace std;
 static int num = 0;
 static int settle_flag = 0;
@@ -217,7 +217,8 @@ int main(int argc, char** argv)
 			{
 				number = number * 10 + argv[2][i] - '0';
 			}//转换为具体的数字
-
+			// 必须先生成终局，才能挖空
+			sudoku_generate(number);
 			ques_generate1(number);
 			cout << "The sudoku question generated is in the ques.txt\n"
 				<< "Have a check\n";
@@ -252,8 +253,8 @@ int main(int argc, char** argv)
 			{
 				number = number * 10 + argv[2][i] - '0';
 			}
-
-			ques_generate1(number);
+			sudoku_generate(number * 100);
+			ques_generate4(number);
 			cout << "The sudoku question generated is in the ques.txt\n"
 				<< "Have a check\n";
 			return 0;
@@ -300,6 +301,7 @@ int main(int argc, char** argv)
 				int diff = 0;
 				diff = argv[4][0] - '0';
 				//传进函数
+				sudoku_generate(number);
 				ques_generate2(number, diff);
 			}
 			else {
@@ -339,6 +341,7 @@ int main(int argc, char** argv)
 				number1 = (argv[4][0] - '0') * 10 + argv[4][1] - '0';
 				number2 = (argv[4][3] - '0') * 10 + argv[4][4] - '0';
 				cout << number1 << " " << number2;
+				sudoku_generate(number);
 				ques_generate3(number, number1, number2);
 			}
 			//传参数
