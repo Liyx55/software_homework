@@ -1,2 +1,0 @@
-D:\大三下课程\1软件工程\第一次结对作业\sudo\Debug\sudo.exe
-D:\github\software_homework\sudo\Debug\sudo.exe
