@@ -5,13 +5,13 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest1
 {
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(UnitTest_lyx)
 	{
 	public:
 		
 		int argc1, argc2, argc3;
 		char** argv1, ** argv2, ** argv3, ** argv4, ** argv5, ** argv6;
-		UnitTest1()
+		UnitTest_lyx()
 		{
 			argc1 = 3;
 			argc2 = 4;
@@ -84,10 +84,23 @@ namespace UnitTest1
 		//测试函数ParameterProcess(), 参数为 - s时
 		TEST_METHOD(TestMethod2)
 		{
+			
 			Input inputs(argc1, argv2);
 			inputs.ParameterProcess();
+			//bool abc = ques_generate1(100);
 			Assert::AreEqual(inputs.GetType1() == 's', true);
-			
+			//Assert::AreEqual(abc, true);
+		}
+
+		//测试函数ParameterProcess(), 参数为 - s时
+		TEST_METHOD(TestMethod15)
+		{
+
+			Input inputs(argc1, argv3);
+			inputs.ParameterProcess();
+			bool abc = ques_generate1(1);
+			Assert::AreEqual(inputs.GetType1() == 'n', true);
+			Assert::AreEqual(abc, true);
 		}
 
 		//测试函数ParameterProcess()，命令行参数不是2个
@@ -175,5 +188,32 @@ namespace UnitTest1
 			Assert::AreEqual(inputs.GetRange1() == 20, true);
 			Assert::AreEqual(inputs.GetRange2() == 30, true);
 		}
+
+		TEST_METHOD(TestMethod11)
+		{
+			bool abc = ques_generate3(1,20,30);
+			Assert::AreEqual(abc, true);
+		}
+		TEST_METHOD(TestMethod12)
+		{
+			bool abc = ques_generate1(1);
+			Assert::AreEqual(abc, true);
+		}
+		TEST_METHOD(TestMethod13)
+		{
+			bool abc = ques_generate2(1,3);
+			Assert::AreEqual(abc, true);
+		}
+		TEST_METHOD(TestMethod14)
+		{
+			bool abc = ques_generate4(1);
+			Assert::AreEqual(abc, true);
+		}
+		TEST_METHOD(TestMethod16)
+		{
+			bool abc = settle_ques();
+			Assert::AreEqual(abc, true);
+		}
+		
 	};
 }

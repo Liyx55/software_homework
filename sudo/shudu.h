@@ -35,12 +35,12 @@ using namespace std;
 
 static char AbsolutePath[100] = { 0 };
 static char ques_board[10][20];
-
+extern bool settle_ques();
 extern bool sudoku_generate(int n);
-extern void ques_generate1(int ques_num);
-extern void ques_generate2(int ques_num, int diff);
-extern void ques_generate3(int ques_num, int space_num1, int space_num2);
-extern void ques_generate4(int ques_num);
+extern bool ques_generate1(int ques_num);
+extern bool ques_generate2(int ques_num, int diff);
+extern bool ques_generate3(int ques_num, int space_num1, int space_num2);
+extern bool ques_generate4(int ques_num);
 extern bool checkUniqueness(int puzzle[UN][UN]);
 extern void copy_grid(int puzzleCopy[UN][UN], int puzzle[UN][UN]);
 extern bool solveSudoku(int grid[UN][UN]);

@@ -10,41 +10,6 @@
 static int num = 0;
 static int settle_flag = 0;
 
-
-int check(int m, int n) {
-    int i, j, k;
-    i = m;
-    j = n;
-    for (k = 0; k < 18; k += 2) {
-        if (k != j) {
-            if (ques_board[i][j] == ques_board[i][k])return 0;
-        }
-        if (k != i) {
-            if (ques_board[i][j] == ques_board[k][j])return 0;
-        }
-    }
-    if (m / 3 == 0)
-        i = 0;
-    else if (m / 3 == 1)
-        i = 3;
-    else
-        i = 6;
-
-    if (n / 6 == 0)
-        j = 0;
-    else if (n / 6 == 1)
-        j = 6;
-    else
-        j = 12;
-
-    for (int c = i; c < i + 3; c++)
-        for (int d = j; d < j + 6; d += 2) {
-            if (c != m && d != n && ques_board[m][n] == ques_board[c][d])
-                return 0;
-        }
-    return 1;
-}
-
 void prune(int i, int j, bool point[10]) {
     for (int k = 0; k < 18; k += 2) {
         if (ques_board[i][k] != '0' && k != j)
@@ -112,7 +77,7 @@ void settle(int pos) {
 }
 
 int total = 0;
-void settle_ques() {
+bool settle_ques() {
     int begin = 0, end = 0;
     FILE* fpQues, * fpSolution;
     char strSolution[200];
@@ -156,6 +121,7 @@ void settle_ques() {
     }
     fclose(fpQues);
     fclose(fpSolution);
+    return true;
 }
 
 
@@ -171,15 +137,16 @@ int main(int argc, char** argv) {
             << "Have a check\n";
     }
     if (type1 == 's') {
-        settle_ques();
+        bool abc = settle_ques();
         cout << "The answer you need is in the sudoku.txt\n"
             << "Have a check\n";
     }
+
     if (type1 == 'n') {
         if (type2 == 'y') {
             int number = inputs.GetNum();
             bool ww = sudoku_generate(number);
-            ques_generate1(number);
+            bool abc = ques_generate1(number);
             cout << "The sudoku question generated is in the ques.txt\n"
                 << "Have a check\n";
         }
@@ -203,10 +170,11 @@ int main(int argc, char** argv) {
             int number1 = inputs.GetRange1();
             int number2 = inputs.GetRange2();
             bool QAQ = sudoku_generate(number);
-            ques_generate3(number, number1, number2);
+            bool cba = ques_generate3(number, number1, number2);
             cout << "The sudoku question generated is in the ques.txt\n"
                 << "Have a check\n";
         }
+
     }
     return 0;
 }

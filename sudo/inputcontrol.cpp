@@ -26,7 +26,7 @@ void Input::ParameterProcess() {
                 if (this->argv[2][i] > '9' || this->argv[2][i] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The second param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
             }
 
@@ -36,7 +36,7 @@ void Input::ParameterProcess() {
             }
             if (number < 1 || number>1000000) {
                 printf("Please input 1 to 1000000֮\n");
-                exit(1);
+                return ;
             } else {
                 this->num = number;
                 this->type1 = 'c';
@@ -47,7 +47,6 @@ void Input::ParameterProcess() {
             this->type1 = 's';
             strncpy(AbsolutePath, this->argv[2], 30);  // ?
         }
-
         // default path ques.txt
         if (!strcmp(this->argv[1], "-n")) {
             int len = strlen(this->argv[2]);
@@ -55,7 +54,7 @@ void Input::ParameterProcess() {
                 if (this->argv[2][i] > '9' || this->argv[2][i] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The second param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
             }
 
@@ -65,7 +64,7 @@ void Input::ParameterProcess() {
             }
             if (number < 1 || number>1000000) {
                 printf("Please input 1 to 1000000֮\n");
-                exit(1);
+                return ;
             } else {
                 this->num = number;
                 this->type1 = 'n';
@@ -75,7 +74,7 @@ void Input::ParameterProcess() {
         if (strcmp(this->argv[1], "-n") && strcmp(this->argv[3], "-u"))    {
             cout << "Illegal paramater\n"
                 << "The first param should be -n, the third should be -u\n";
-            exit(1);
+            return ;
         }
 
         if (!strcmp(this->argv[1], "-n")) {
@@ -84,7 +83,7 @@ void Input::ParameterProcess() {
                 if (this->argv[2][i] > '9' || this->argv[2][i] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The second param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
             }
 
@@ -94,7 +93,7 @@ void Input::ParameterProcess() {
             }
             if (number < 1 || number>1000000) {
                 printf("Please input 1 to 1000000֮\n");
-                exit(1);
+                return ;
             } else {
                 this->num = number;
                 this->type1 = 'n';
@@ -106,7 +105,7 @@ void Input::ParameterProcess() {
         || strcmp(this->argv[3], "-r"))) {
             cout << "Illegal paramater\n"
                 << "The first param should be -n, the third -r or -m\n";
-            exit(1);
+            return ;
         }
 
         if (!strcmp(this->argv[1], "-n")) {
@@ -115,7 +114,7 @@ void Input::ParameterProcess() {
                 if (this->argv[2][i] > '9' || this->argv[2][i] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The second param should be a positive int\n";
-                    exit(1);
+                    return ;
                 }
             }
 
@@ -125,7 +124,7 @@ void Input::ParameterProcess() {
             }
             if (number < 1 || number>1000000) {
                 printf("Please input 1 to 1000000֮\n");
-                exit(1);
+                return ;
             } else {
                 this->num = number;
                 this->type1 = 'n';
@@ -134,7 +133,7 @@ void Input::ParameterProcess() {
                 if (this->argv[4][0] > '3' || this->argv[4][0] < '1') {
                     cout << "Illegal paramater\n";
                     cout << "The forth param should be a positive int(1-3)\n";
-                    exit(1);
+                    return ;
                 }
 
                 int diff = 0;
@@ -146,12 +145,12 @@ void Input::ParameterProcess() {
                 if (this->argv[4][0] > '9' || this->argv[4][0] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The forth param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
                 if (this->argv[4][1] > '9' || this->argv[4][1] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The forth param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
                 /*if (argv[4][2] != '~' || argv[4][2] != '-')
                 {
@@ -162,12 +161,12 @@ void Input::ParameterProcess() {
                 if (this->argv[4][3] > '9' || this->argv[4][3] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The forth param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
                 if (this->argv[4][4] > '9' || this->argv[4][4] < '0') {
                     cout << "Illegal paramater\n";
                     cout << "The forth param should be a positive integer\n";
-                    exit(1);
+                    return ;
                 }
                 int number1 = 0;
                 int number2 = 0;
@@ -191,7 +190,7 @@ void Input::ParameterProcess() {
             << " into the given path(prepare for the sudoku game)\n"
             << "      The charactre should be itself:"
             << "such as C is not equal to c.\n";
-        exit(1);
+        return ;
     }
 }
 

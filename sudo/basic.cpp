@@ -87,7 +87,7 @@ bool sudoku_generate(int n) {
     }
     while (next_permutation(line + 1, line + 9));
 }
-void ques_generate1(int ques_num) {
+bool ques_generate1(int ques_num) {
     FILE* fpQues1;
     FILE* fpBase1;
     char str[200];
@@ -138,14 +138,18 @@ void ques_generate1(int ques_num) {
         for (int i = 0; i < 10; i++) {
             strncat(str, ques_board[i], 20);
         }
-        if (!ques_num)
+        if (!ques_num) {
             str[161] = '\0';
+            
+        }
+            
         fputs(str, fpQues1);
     }
     fclose(fpBase1);
     fclose(fpQues1);
+    return true;
 }
-void ques_generate2(int ques_num, int diff) {
+bool ques_generate2(int ques_num, int diff) {
     FILE* fpQues1;
     FILE* fpBase1;
     char str[200];
@@ -205,14 +209,18 @@ void ques_generate2(int ques_num, int diff) {
         for (int i = 0; i < 10; i++) {
             strncat(str, ques_board[i], 20);
         }
-        if (!ques_num)
+        if (!ques_num) {
             str[161] = '\0';
+            
+        }
+            
         fputs(str, fpQues1);
     }
     fclose(fpBase1);
     fclose(fpQues1);
+    return true;
 }
-void ques_generate3(int ques_num, int space_num1, int space_num2) {
+bool ques_generate3(int ques_num, int space_num1, int space_num2) {
     FILE* fpQues1;
     FILE* fpBase1;
     char str[200];
@@ -263,15 +271,19 @@ void ques_generate3(int ques_num, int space_num1, int space_num2) {
         for (int i = 0; i < 10; i++) {
             strncat(str, ques_board[i], 20);
         }
-        if (!ques_num)
+        if (!ques_num) {
             str[161] = '\0';
+            
+        }
+            
         fputs(str, fpQues1);
     }
     fclose(fpBase1);
     fclose(fpQues1);
+    return true;
 }
 
-void ques_generate4(int ques_num) {
+bool ques_generate4(int ques_num) {
     FILE* fpQues1;
     FILE* fpBase1;
     char str[200];
@@ -331,8 +343,11 @@ void ques_generate4(int ques_num) {
             for (int i = 0; i < 10; i++) {
                 strncat(str, ques_board[i], 20);
             }
-            if (!ques_num)
+            if (!ques_num) {
                 str[161] = '\0';
+                
+            }
+                
             fputs(str, fpQues1);
         } else {
             continue;
@@ -340,6 +355,7 @@ void ques_generate4(int ques_num) {
     }
     fclose(fpBase1);
     fclose(fpQues1);
+    return true;
 }
 
 bool checkUniqueness(int puzzle[UN][UN]) {
